@@ -7,7 +7,8 @@ var barChart,
 // Variable Caja: son dos opciones, una viene del id del canvas de gráfico principal y la otra id viene // del id modal Content(código puesto en el index.html)
 
 const grafico = (paises, caja = "grafico") => {
-  var graficoCanvas = document.getElementById(caja);
+  let graficoCanvas = document.getElementById(caja);
+  let headerCanvas = document.getElementById("headerGrafico");
 
   let actNum = [],
     conNum = [],
@@ -44,19 +45,37 @@ const grafico = (paises, caja = "grafico") => {
     backgroundColor: "#00ACC1",
   };
 
-  var covid = {
-    labels: labels,
-    datasets: [activos, confirmados, muertos, recuperados],
-  };
-
   if (caja != "grafico") {
     aux && barChart.destroy();
+    headerCanvas.innerHTML = `<h2 class="text-center">${labels[0]}</h2>`;
+    const data = {
+      labels: ["Activos", "Confirmados", "Muertos", "Recuperados"],
+      datasets: [
+        {
+          data: [actNum[0], conNum[0], mueNum[0], recNum[0]],
+          backgroundColor: [
+            "rgb(255, 99, 132)",
+            "rgb(75, 192, 192)",
+            "rgb(255, 205, 86)",
+            "rgb(201, 203, 207)",
+            "rgb(54, 162, 235)",
+          ],
+        },
+      ],
+    };
+
     barChart = new Chart(graficoCanvas, {
-      type: "bar",
-      data: covid,
+      type: "pie",
+      data: data,
     });
+
     aux = true;
   } else {
+    var covid = {
+      labels: labels,
+      datasets: [activos, confirmados, muertos, recuperados],
+    };
+
     barPrin = new Chart(graficoCanvas, {
       type: "bar",
       data: covid,
