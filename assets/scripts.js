@@ -1,1 +1,1 @@
-export {getData} from 'consumoApi.js'
+export {getData} from '/consumoApi.js'
