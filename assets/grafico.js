@@ -1,86 +1,106 @@
-var barChart,
-  barPrin,
-  aux = false;
+import { getData } from './consumoApi.js';
 
-// Función para gráfico principal y los modals
-// Variables Paises: viene de consumo de apis getData
-// Variable Caja: son dos opciones, una viene del id del canvas de gráfico principal y la otra id viene // del id modal Content(código puesto en el index.html)
+const initChart = async () =>
+{
+    const posts = await getData()
 
-const grafico = (paises, caja = "grafico") => {
-  let graficoCanvas = document.getElementById(caja);
-  let headerCanvas = document.getElementById("headerGrafico");
+    const activos = posts.filter((post) =>
+    {
+        return post.active >= 10000
+    });
 
-  let actNum = [],
-    conNum = [],
-    mueNum = [],
-    recNum = [],
-    labels = [];
+    let locations = [];
 
-  paises.forEach((pais) => {
-    actNum.push(pais.active);
-    conNum.push(pais.confirmed);
-    mueNum.push(pais.deaths);
-    recNum.push(pais.recovered);
-    labels.push(pais.location);
-  });
+    for (let i = 0; i < activos.length; i++)
+    {
+        locations[i] = activos[i].location
+    }
 
-  let activos = {
-    label: "Casos Activos",
-    data: actNum,
-    backgroundColor: "#E53935",
-  };
-  let confirmados = {
-    label: "Casos Confirmados",
-    data: conNum,
-    backgroundColor: "#FDD835",
-  };
-  let muertos = {
-    label: "Casos Muertos",
-    data: mueNum,
-    backgroundColor: "#E0E0E0",
-  };
-  let recuperados = {
-    label: "Casos Recupedados",
-    data: recNum,
-    backgroundColor: "#00ACC1",
-  };
+    let actives = [];
 
-  if (caja != "grafico") {
-    aux && barChart.destroy();
-    headerCanvas.innerHTML = `<h2 class="text-center">${labels[0]}</h2>`;
-    const data = {
-      labels: ["Activos", "Confirmados", "Muertos", "Recuperados"],
-      datasets: [
+    for (let i = 0; i < activos.length; i++)
+    {
+        actives[i] = activos[i].active
+    }
+
+    let confirmed = [];
+
+    for (let i = 0; i < activos.length; i++)
+    {
+        confirmed[i] = activos[i].confirmed
+    }
+
+    let deaths = [];
+
+    for (let i = 0; i < activos.length; i++)
+    {
+        deaths[i] = activos[i].deaths
+    }
+
+    let recovered = [];
+
+    for (let i = 0; i < activos.length; i++)
+    {
+        recovered[i] = activos[i].recovered
+    }
+
+    var ctx = document.getElementById('myChart');
+
+    const data =
+    {
+        labels: locations,
+        datasets:
+        [
+            {
+                label: 'Casos Activos',
+                data: actives,
+                backgroundColor:
+                [
+                    'rgba(255, 0, 0, 1)'
+                ]
+            },
+            {
+                label: 'Casos Confirmados',
+                data: confirmed,
+                backgroundColor:
+                [
+                    'rgba(255, 255, 0, 1)'
+                ]
+            },
+            {
+                label: 'Casos Muertos',
+                data: deaths,
+                backgroundColor:
+                [
+                    'rgba(192, 192, 192, 1)'
+                ]
+            },
+            {
+                label: 'Casos Recuperados',
+                data: recovered,
+                backgroundColor:
+                [
+                    'rgba(0, 255, 255, 1)'
+                ]
+            }
+        ]
+    }
+
+    new Chart(ctx,
+    {
+        type: 'bar',
+        data: data,
+        options:
         {
-          data: [actNum[0], conNum[0], mueNum[0], recNum[0]],
-          backgroundColor: [
-            "rgb(255, 99, 132)",
-            "rgb(75, 192, 192)",
-            "rgb(255, 205, 86)",
-            "rgb(201, 203, 207)",
-            "rgb(54, 162, 235)",
-          ],
-        },
-      ],
-    };
-
-    barChart = new Chart(graficoCanvas, {
-      type: "pie",
-      data: data,
+            scales:
+            {
+                y:
+                {
+                    beginAtZero: true
+                }
+            }
+        }
     });
+}
 
-    aux = true;
-  } else {
-    var covid = {
-      labels: labels,
-      datasets: [activos, confirmados, muertos, recuperados],
-    };
-
-    barPrin = new Chart(graficoCanvas, {
-      type: "bar",
-      data: covid,
-    });
-  }
-};
-
-export { grafico };
+export { initChart };
