@@ -26,3 +26,16 @@
 * **V4.0**
 
 * *Se modifican detalles en el Index*
+
+* **V5.0**
+
+* *Se realiza el Modal con su gráfico correspondiente*
+* *Se valida la consulta a la API dentro del Modal*
+
+* **V6.0**
+
+* *Se estructuran mejor los directorios*
+
+* **V7.0**
+
+* *Se realiza la documentación*
