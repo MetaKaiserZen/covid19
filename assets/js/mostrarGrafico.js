@@ -2,11 +2,13 @@ import { getData } from './consumoApi.js';
 
 const initChart = async () =>
 {
-    const posts = await getData()
+    const datos = await getData()
 
-    const activos = posts.filter((post) =>
+    // Se rescatan los valores por separado
+
+    const activos = datos.filter((a) =>
     {
-        return post.active >= 10000
+        return a.active >= 10000
     });
 
     let locations = [];
