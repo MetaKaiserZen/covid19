@@ -1,6 +1,6 @@
-import { initChart } from "./mostrarGrafico.js";
-import { getData } from "./consumoApi.js";
-import { paintTable } from "./mostrarTabla.js";
+import { initChart } from './mostrarGrafico.js';
+import { getData } from './consumoApi.js';
+import { paintTable } from './mostrarTabla.js';
 
 initChart();
 
