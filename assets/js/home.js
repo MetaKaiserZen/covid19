@@ -84,6 +84,7 @@ const hito1 = async () => {
 
   <!-- Container -->
   <div class="container">
+    <h1 class="text-center mt-3">Situación Mundial</h1>
     <canvas id="myChart" width="300" height="150" class="py-5"></canvas>
     <table class="table table-striped table-hover shadow">
       <thead class="thead-dark">
