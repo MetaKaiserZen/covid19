@@ -9,8 +9,10 @@ $(document).ready(() => {
     const email = $("#js-input-email").val();
     const password = $("#js-input-password").val();
     const JWT = await postLogin(email, password);
-    JWT ? init() : error();
-    location.reload();
+    if (JWT) {
+      init();
+      location.reload();
+    } else error();
   });
   $("#homeBtn").click(async (e) => {
     e.preventDefault();
