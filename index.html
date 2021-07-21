@@ -8,23 +8,29 @@
     </head>
     <body>
 
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Covid19</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Iniciar sesion</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Covid19</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" id="iniciarSesion" data-toggle="modal" data-target="#sesionModal">Iniciar Sesión</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" id="situacionChile" style="display: none">Situación de Chile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" id="cerrarSesion" style="display: none">Cerrar Sesión</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
 
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -43,6 +49,38 @@
                 </div>
             </div>
         </div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="sesionModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Iniciar Sesión</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+					</div>
+					<form id="modalForm">
+						<div class="modal-body">
+							<div class="form-group">
+								<div class="col">
+									<label>Correo</label>
+									<input type="text" class="form-control" id="emailForm" aria-describedby="emailHelp" autocomplete="off">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col">
+									<label>Contraseña</label>
+									<input type="password" class="form-control" id="passwordForm" autocomplete="off">
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+							<button type="submit" class="btn btn-primary">Entrar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 
         <!-- Container -->
         <div class="container">
