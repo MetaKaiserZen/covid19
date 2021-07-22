@@ -8,7 +8,7 @@
 * **Osvaldo Molina**
 * **Carlos Farias**
 
-# Versiones
+# Versiones Hito 1
 
 * **V1.0**
 
@@ -39,3 +39,13 @@
 * **V7.0**
 
 * *Se realiza la documentación*
+
+# Versiones Hito 2
+
+* **V1.0**
+
+* *Se agrega el resto de Modals en el Index*
+
+* **V2.0**
+
+* *Se realiza HTML semántico*
