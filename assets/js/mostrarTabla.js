@@ -19,7 +19,7 @@ let paintTable = (datos) =>
 
     // Se levanta un Modal que muestra un gráfico
 
-    $('.btn-covid' ).on('click', function()
+    $('.btn-covid' ).on('click', () =>
     {
         let country = $(this).val();
 
@@ -31,11 +31,15 @@ let paintTable = (datos) =>
 
             if (!datos.location)
             {
+                $('#modalBody').html('<div><img src="assets/img/404.jpg" alt="404" style="width: 100%;"></div>');
+
                 datos.location = 'Unknown';
             }
             else
             {
-                let ctx = document.getElementById('myModal');
+                $('#modalBody').html('<canvas id="myModal" width="400" height="400"></canvas>');
+
+                let ctx = $('#myModal');
 
                 const data =
                 {
@@ -81,9 +85,11 @@ let paintTable = (datos) =>
 
                 // Se destruye el gráfico al cerrar el Modal
 
-                $('#staticBackdrop').on('hidden.bs.modal', function()
+                $('#staticBackdrop').on('hidden.bs.modal', () =>
                 {
                     $('#staticBackdropLabel').text('');
+
+                    $('#modalBody').html('');
 
                     myChart.destroy();
                 });
