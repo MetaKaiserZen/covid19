@@ -1,12 +1,40 @@
-import { initChart } from './mostrarGrafico.js';
-import { getData } from './consumoApi.js';
-import { paintTable } from './mostrarTabla.js';
-import { initChile } from './chile.js';
+import { hito1, menuHome } from "./home.js";
+import { hito2, menuChile } from "./chile.js";
+import { postLogin, error, cerrarSesion } from "./login.js";
 
-initChart();
+$(document).ready(() => {
+  init();
+  $("#ingresarBtn").click(async (e) => {
+    e.preventDefault();
+    const email = $("#js-input-email").val();
+    const password = $("#js-input-password").val();
+    const JWT = await postLogin(email, password);
+    if (JWT) {
+      init();
+      location.reload();
+    } else error();
+  });
+  $("#homeBtn").click(async (e) => {
+    e.preventDefault();
+    await hito1();
+  });
+  $("#chileBtn").click(async (e) => {
+    e.preventDefault();
+    await hito2();
+  });
+  $("#cerrarBtn").click((e) => {
+    e.preventDefault();
+    cerrarSesion();
+  });
+});
 
-const datos = await getData();
-
-paintTable(datos);
-
-initChile();
+const init = async () => {
+  const token = localStorage.getItem("jwt-token");
+  if (token) {
+    hito2();
+    menuChile();
+  } else {
+    hito1();
+    menuHome();
+  }
+};
