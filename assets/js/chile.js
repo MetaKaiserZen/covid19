@@ -29,6 +29,8 @@ const initChile = async () =>
 
         const initLogin = async () =>
         {
+            // Si se llama por await se demoran en exceso los datos de Chile
+
             const token = localStorage.getItem('jwt-token');
 
             if (token != 'undefined')
@@ -38,25 +40,24 @@ const initChile = async () =>
                 $('#validacionContenedor').removeClass('alert alert-danger');
                 $('#emailForm').prop('disabled', true);
                 $('#passwordForm').prop('disabled', true);
+                $('#equisForm').hide();
+                $('#entrarForm').prop('disabled', true);
 
-                setTimeout(() =>
-                {
-                    $('#sesionModal').modal('hide');
-                }, 500);
+                await getChile(token);
 
-                $('#sesionModal').on('hidden.bs.modal', async () =>
+                $('#sesionModal').modal('hide');
+
+                $('#sesionModal').on('hidden.bs.modal', () =>
                 {
                     $('#emailForm').prop('disabled', false);
                     $('#passwordForm').prop('disabled', false);
+                    $('#equisForm').show();
+                    $('#entrarForm').prop('disabled', false);
 
                     $('#modalForm').trigger('reset');
 
                     toggleNavbar(false, true, true);
                 });
-
-                const token = localStorage.getItem('jwt-token');
-
-                await getChile(token);
             }
             else
             {
@@ -68,11 +69,16 @@ const initChile = async () =>
 
         initLogin();
 
-        $('#situacionChile').on('click', async () =>
+        $('#homePage').on('click', function()
+        {
+            toggleContainer(true, false);
+        });
+
+        $('#situacionChile').on('click', function()
         {
             toggleContainer(false, true);
 
-            const initChart = async () =>
+            const initChart = () =>
             {
                 // Consumir datos desde el Storage
 
@@ -147,9 +153,10 @@ const initChile = async () =>
             initChart();
         });
 
-        $('#cerrarSesion').on('click', async () =>
+        $('#cerrarSesion').on('click', function()
         {
             localStorage.removeItem('jwt-token');
+            localStorage.removeItem('chile-storage');
 
             toggleNavbar(true, false, false);
             toggleContainer(true, false);

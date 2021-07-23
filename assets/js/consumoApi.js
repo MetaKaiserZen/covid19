@@ -4,9 +4,15 @@ const getData = async () =>
 {
     try
     {
-        const resp = await fetch('http://localhost:3000/api/total');
+        const response = await fetch('http://localhost:3000/api/total');
 
-        const {data} = await resp.json();
+        const {data} = await response.json();
+
+        // Almacenar datos en el Storage
+
+        const paisesSt = localStorage.getItem('paises-storage');
+
+        if (!paisesSt) { localStorage.setItem('paises-storage', JSON.stringify(data)); }
 
         return data;
     }
