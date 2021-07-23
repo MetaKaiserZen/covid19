@@ -19,7 +19,7 @@ let paintTable = (datos) =>
 
     // Se levanta un Modal que muestra un gráfico
 
-    $('.btn-covid' ).on('click', () =>
+    $('.btn-covid' ).on('click', function()
     {
         let country = $(this).val();
 
@@ -85,7 +85,7 @@ let paintTable = (datos) =>
 
                 // Se destruye el gráfico al cerrar el Modal
 
-                $('#staticBackdrop').on('hidden.bs.modal', () =>
+                $('#staticBackdrop').on('hidden.bs.modal', function()
                 {
                     $('#staticBackdropLabel').text('');
 

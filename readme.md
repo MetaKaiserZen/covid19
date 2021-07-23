@@ -8,6 +8,10 @@
 * **Osvaldo Molina**
 * **Carlos Farias**
 
+# GitHub
+
+* **https://github.com/MetaKaiserZen/covid19**
+
 # Versiones Hito 1
 
 * **V1.0**
@@ -57,3 +61,7 @@
 * **V4.0**
 
 * *Se verifican detalles finales y se validan los datos de entrada*
+
+* **V5.0**
+
+* *Se solucionan errores en la consulta a la API*
