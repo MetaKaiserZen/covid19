@@ -34,4 +34,45 @@ const getCountry = async (country) =>
     }
 }
 
-export { getData, getCountry };
+// Almacenar datos en el Storage
+
+const getChile = async (token) =>
+{
+    let urls =
+    [
+        "http://localhost:3000/api/confirmed",
+        "http://localhost:3000/api/deaths",
+        "http://localhost:3000/api/recovered",
+    ];
+
+    try
+    {
+        const response = await Promise.all
+        (
+            urls.map((url) =>
+            fetch(url,
+            {
+                method: 'GET',
+                headers:
+                {
+                    Authorization: `Bearer ${token}`
+                },
+            }))
+        ).then((results) => Promise.all(results.map((r) => r.json())));
+
+        const chileSt = localStorage.getItem('chile-storage');
+
+        if (!chileSt)
+        {
+            localStorage.setItem('chile-storage', JSON.stringify(response));
+        }
+
+        return response;
+    }
+    catch (error)
+    {
+        console.error(error);
+    }
+}
+
+export { getData, getCountry, getChile };

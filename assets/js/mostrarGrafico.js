@@ -46,7 +46,7 @@ const initChart = async () =>
         recovered[i] = activos[i].recovered
     }
 
-    var ctx = document.getElementById('myChart');
+    let ctx = $('#myChart');
 
     const data =
     {

@@ -49,3 +49,11 @@
 * **V2.0**
 
 * *Se realiza HTML semántico*
+
+* **V3.0**
+
+* *Se realiza la consulta a la API Chile*
+
+* **V4.0**
+
+* *Se verifican detalles finales y se validan los datos de entrada*
